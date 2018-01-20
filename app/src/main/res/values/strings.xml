@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Scandal Quizz App</string>
+    <string name="question_one">What is Olivia Pope\'s middle name?</string>
+    <string name="q1_option1">Caren</string>
+    <string name="q1_option2">Connie</string>
+    <string name="q1_option3">Carolyn</string>
+    <string name="q1_option4">Carole</string>
+    <string name="question_two">At the start of season 4, Olivia receives a newspaper clipping informing her of the death of whom?</string>
+    <string name="q2_option1">Maya</string>
+    <string name="q2_option2">Harrison</string>
+    <string name="q2_option3">Jerry</string>
+    <string name="q2_option4">Huck</string>
+    <string name="question_three">How many kids does Huck have?</string>
+    <string name="q3_hint">He does have a family</string>
+    <string name="question_four">Who forced Mellie to vomit when she swallowed an entire bottle of Oxycodone?</string>
+    <string name="q4_option1">David</string>
+    <string name="q4_option2">Andrew</string>
+    <string name="q4_option3">Fitz</string>
+    <string name="q4_option4">Olivia</string>
+    <string name="question_five">Which of these people did David Rosen see get murdered?</string>
+    <string name="q5_option1">Vanessa Chandler</string>
+    <string name="q5_option2">Elizabeth North</string>
+    <string name="q5_option3">Lauren Wellman</string>
+    <string name="q5_option4">James Novak</string>
+    <string name="question_six">What did Jake and Olivia first flirt over?</string>
+    <string name="q6_option1">Croissants</string>
+    <string name="q6_option2">How much they hate politics</string>
+    <string name="q6_option3">A glass of wine</string>
+    <string name="q6_option4">Scones</string>
+    <string name="question_seven">What is Quinn\'s true identity?</string>
+    <string name="q7_option1">Lindsay Dwyer</string>
+    <string name="q7_option2">Lindsay Perkins</string>
+    <string name="q7_option3">Perkins Quinn</string>
+    <string name="q7_option4">Quinn Perkins</string>
+    <string name="bonus">bonus question</string>
+    <string name="bonus_question">Whose mother is discovered to be alive during season 3?</string>
+    <string name="submit_main">it\'s handled \n submit</string>
+    <string name="reset_button">Gladiators don\'t run \n  TRY AGAIN </string>
+    <string name="one_two">You are an enemy of state?</string>
+    <string name="three_four">Are we gladiators or are we bitches?</string>
+    <string name="five_six">Gladiator in a suit!</string>
+    <string name="full_score">Qualified to work at OPA 👏🏾</string>
+    <string name="final_score"> out of 7</string>
+    <string name="error_message">Error! Answer all questions</string>
+
+</resources>
