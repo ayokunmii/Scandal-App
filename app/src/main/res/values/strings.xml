@@ -34,6 +34,7 @@
     <string name="q7_option4">Quinn Perkins</string>
     <string name="bonus">bonus question</string>
     <string name="bonus_question">Whose mother is discovered to be alive during season 3?</string>
+    <string name="bonus_submit_button">submit</string>
     <string name="submit_main">it\'s handled \n submit</string>
     <string name="reset_button">Gladiators don\'t run \n  TRY AGAIN </string>
     <string name="one_two">You are an enemy of state?</string>

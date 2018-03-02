@@ -8,4 +8,38 @@
         <item name="colorAccent">#FF5252</item>
     </style>
 
+    <style name="question_block">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:orientation">vertical</item>
+
+    </style>
+
+    <style name="question_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">11dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="question_options">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">35dp</item>
+    </style>
+
+    <style name="image_bullet">
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_width">25dp</item>
+    </style>
+
+    <style name="button">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">11dp</item>
+        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/button_colour</item>
+    </style>
 </resources>

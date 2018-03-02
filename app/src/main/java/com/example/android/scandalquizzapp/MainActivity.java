@@ -1,11 +1,14 @@
 package com.example.android.scandalquizzapp;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -18,6 +21,19 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
+    //KEY VALUES TO HANDLE SCREEN ROTATION
+    private static final String QUESTION_ONE = "";
+    private static final String QUESTION_TWO = "";
+    private static final String QUESTION_THREE = "";
+    private static final String QUESTION_FOUR = "";
+    //question five is already saved on rotation?
+    private static final String QUESTION_SIX = "";
+    private static final String QUESTION_SEVEN = "";
+    private static final String SCORE_COMMENT = "";
+    private static final String BONUS_QUESTION = "";
+    private static final String IMAGE_INDICATOR = "";
+
+
     int scoreCount = 0;
     int answers = 0;
     //QUESTIONS
@@ -45,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
     int chosenAnswer7;
     String chosenAnswerBonus;
 
+    TextView scoreComment;
+    ImageView correspondingImage;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +80,52 @@ public class MainActivity extends AppCompatActivity {
         question6 = (RadioGroup) findViewById(R.id.options_6);
         question7 = (RadioGroup) findViewById(R.id.options_7);
         bonusQuestion = (EditText) findViewById(R.id.bonus_answer);
-
+        scoreComment = (TextView) findViewById(R.id.score_comment);
+        correspondingImage = (ImageView) findViewById(R.id.bonus_indictaor);
+        correspondingImage.setImageBitmap(bitmap);
 
     }
 
-    //method to display score comment
-    public void displayComment(String comment) {
-        TextView scoreComment = (TextView) findViewById(R.id.score_comment);
-        scoreComment.setText(String.valueOf(comment));
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        //to save current value of variable
+        savedInstanceState.putInt(QUESTION_ONE, chosenAnswer1);
+        savedInstanceState.putInt(QUESTION_TWO, chosenAnswer2);
+        savedInstanceState.putString(QUESTION_THREE, chosenAnswer3);
+        savedInstanceState.putInt(QUESTION_FOUR, chosenAnswer4);
+        savedInstanceState.putInt(QUESTION_SIX, chosenAnswer6);
+        savedInstanceState.putInt(QUESTION_SEVEN, chosenAnswer7);
+        savedInstanceState.putString(SCORE_COMMENT, scoreComment.getText().toString());
+
+
+        savedInstanceState.putString(BONUS_QUESTION, chosenAnswerBonus);
+        savedInstanceState.putParcelable(IMAGE_INDICATOR, bitmap);
+
+
+//call superclass to save state of view hierachy
+        super.onSaveInstanceState(savedInstanceState);
     }
+
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        //calling superclass to restore hierachy state
+        super.onRestoreInstanceState(savedInstanceState);
+
+
+//linking variables with corresponding key values
+        chosenAnswer1 = savedInstanceState.getInt(QUESTION_ONE);
+        chosenAnswer2 = savedInstanceState.getInt(QUESTION_TWO);
+        chosenAnswer3 = savedInstanceState.getString(QUESTION_THREE);
+        chosenAnswer4 = savedInstanceState.getInt(QUESTION_FOUR);
+        chosenAnswer6 = savedInstanceState.getInt(QUESTION_SIX);
+        chosenAnswer7 = savedInstanceState.getInt(QUESTION_SEVEN);
+        chosenAnswerBonus = savedInstanceState.getString(BONUS_QUESTION);
+        bitmap = savedInstanceState.getParcelable(IMAGE_INDICATOR);
+
+
+        displayComment(savedInstanceState.getString(SCORE_COMMENT));
+    }
+
 
     private void chosenVScorrect() {
 //for question 1
@@ -244,21 +300,19 @@ public class MainActivity extends AppCompatActivity {
             mp.start();
 
 
-            /*
-            submitButton.setOnClickListener(new View.OnClickListener(){
-
-
-                public void onClick(View v) {
-                    mp.start();
-                }
-            });
-            */
-
-
         }
     }
 
+    //method to display score comment
+    public void displayComment(String comment) {
+
+        scoreComment.setText(String.valueOf(comment));
+
+    }
+
+
     public void scoreComments() {
+
 
         //score 1-2
         if (scoreCount == 0 | scoreCount == 1 | scoreCount == 2) {
@@ -292,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
     public void bonusScore(View v) {
 
         // bonus question score is displayed with either a tick or cross depending on answer provided
-        ImageView correspondingImage = (ImageView) findViewById(R.id.bonus_indictaor);
+
         bonusQuestion.setMaxLines(1);
         chosenAnswerBonus = bonusQuestion.getText().toString();
 
@@ -313,7 +367,6 @@ public class MainActivity extends AppCompatActivity {
         Button bonusSubmitButton = (Button) findViewById(R.id.bonus_submit_button);
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_sound);
         mp.start();
-
 
     }
 
