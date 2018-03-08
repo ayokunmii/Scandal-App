@@ -1,8 +1,12 @@
 package com.example.android.scandalquizzapp;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -29,9 +33,8 @@ public class MainActivity extends AppCompatActivity {
     //question five is already saved on rotation?
     private static final String QUESTION_SIX = "";
     private static final String QUESTION_SEVEN = "";
-    private static final String SCORE_COMMENT = "";
-    private static final String BONUS_QUESTION = "";
-    private static final String IMAGE_INDICATOR = "";
+    private static final String SCORE_COMMENT = "comment";
+
 
 
     int scoreCount = 0;
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     CheckBox questions5_4;
     RadioGroup question6;
     RadioGroup question7;
-    EditText bonusQuestion;
+
     //ANSWERS
     int chosenAnswer1;
     int chosenAnswer2;
@@ -59,11 +62,14 @@ public class MainActivity extends AppCompatActivity {
     boolean chosenAnswer5_b;
     int chosenAnswer6;
     int chosenAnswer7;
-    String chosenAnswerBonus;
-
     TextView scoreComment;
-    ImageView correspondingImage;
+
     Bitmap bitmap;
+    BitmapDrawable drawable;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +85,13 @@ public class MainActivity extends AppCompatActivity {
         questions5_4 = (CheckBox) findViewById(R.id.options_5_b);
         question6 = (RadioGroup) findViewById(R.id.options_6);
         question7 = (RadioGroup) findViewById(R.id.options_7);
-        bonusQuestion = (EditText) findViewById(R.id.bonus_answer);
+
         scoreComment = (TextView) findViewById(R.id.score_comment);
-        correspondingImage = (ImageView) findViewById(R.id.bonus_indictaor);
-        correspondingImage.setImageBitmap(bitmap);
+
+
+        //bitmap = ((BitmapDrawable)correspondingImage.getDrawable()).getBitmap();
+
+        // bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.wrong_button);
 
     }
 
@@ -96,11 +105,6 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putInt(QUESTION_SIX, chosenAnswer6);
         savedInstanceState.putInt(QUESTION_SEVEN, chosenAnswer7);
         savedInstanceState.putString(SCORE_COMMENT, scoreComment.getText().toString());
-
-
-        savedInstanceState.putString(BONUS_QUESTION, chosenAnswerBonus);
-        savedInstanceState.putParcelable(IMAGE_INDICATOR, bitmap);
-
 
 //call superclass to save state of view hierachy
         super.onSaveInstanceState(savedInstanceState);
@@ -119,13 +123,30 @@ public class MainActivity extends AppCompatActivity {
         chosenAnswer4 = savedInstanceState.getInt(QUESTION_FOUR);
         chosenAnswer6 = savedInstanceState.getInt(QUESTION_SIX);
         chosenAnswer7 = savedInstanceState.getInt(QUESTION_SEVEN);
-        chosenAnswerBonus = savedInstanceState.getString(BONUS_QUESTION);
-        bitmap = savedInstanceState.getParcelable(IMAGE_INDICATOR);
 
 
+        //bitmap = ((BitmapDrawable)correspondingImage.getDrawable()).getBitmap();
+        /*
+        correspondingImage.setImageBitmap(bitmap);
+        bitmap = Bitmap.createBitmap(correspondingImage.getDrawingCache(true));
+
+        correspondingImage.setImageBitmap(bitmap);
+        correspondingImage.buildDrawingCache();
+        bitmap = Bitmap.createBitmap(correspondingImage.getDrawingCache());
+        bitmap = ((BitmapDrawable)correspondingImage.getDrawable()).getBitmap();
+
+        ;
+*/
+//displayComment(SCORE_COMMENT);
         displayComment(savedInstanceState.getString(SCORE_COMMENT));
     }
 
+    //method to display score comment
+    public void displayComment(String comment) {
+        scoreComment = (TextView) findViewById(R.id.score_comment);
+        scoreComment.setText(String.valueOf(comment));
+
+    }
 
     private void chosenVScorrect() {
 //for question 1
@@ -291,6 +312,8 @@ public class MainActivity extends AppCompatActivity {
             Log.i("score", "score is " + scoreCount + " answer is " + answers);
         } else {
             Toast.makeText(this, +scoreCount + " " + getString(R.string.final_score), Toast.LENGTH_SHORT).show();
+            TextView surpriseBonus = (TextView) findViewById(R.id.bonus_navigator);
+            surpriseBonus.setText(R.string.bonus);
             Log.i("score", "score is " + scoreCount + " answer is " + answers);
             scoreComments();
 
@@ -303,12 +326,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //method to display score comment
-    public void displayComment(String comment) {
-
-        scoreComment.setText(String.valueOf(comment));
-
-    }
 
 
     public void scoreComments() {
@@ -342,33 +359,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    public void bonusScore(View v) {
-
-        // bonus question score is displayed with either a tick or cross depending on answer provided
-
-        bonusQuestion.setMaxLines(1);
-        chosenAnswerBonus = bonusQuestion.getText().toString();
-
-        if (chosenAnswerBonus.equalsIgnoreCase("Olivia Pope")) {
-            correspondingImage.setImageResource(R.drawable.right_button);
-        } else if (chosenAnswerBonus.equalsIgnoreCase("Olivia")) {
-            correspondingImage.setImageResource(R.drawable.right_button);
-        } else if (chosenAnswerBonus.equalsIgnoreCase("olivia ")) {
-            correspondingImage.setImageResource(R.drawable.right_button);
-        } else if (chosenAnswerBonus.equalsIgnoreCase("olivia pope ")) {
-            correspondingImage.setImageResource(R.drawable.right_button);
-        } else {
-            correspondingImage.setImageResource(R.drawable.wrong_button);
-        }
-
-        //FOR SOUND
-
-        Button bonusSubmitButton = (Button) findViewById(R.id.bonus_submit_button);
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_sound);
-        mp.start();
-
+    public void bonusPage(View v) {
+        Intent bonus = new Intent(this, BonusQPageActivity.class);
+        startActivity(bonus);
     }
+
 
 
     public void reset(View v) {

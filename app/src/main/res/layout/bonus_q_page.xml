@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.scandalquizzapp.BonusQPageActivity">
+
+    <ImageView style="@style/banner" />
+
+
+    <LinearLayout
+        style="@style/question_block"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                style="@style/image_bullet"
+                android:src="@drawable/bullet_icon_4" />
+
+            <TextView
+                style="@style/question_text"
+                android:layout_marginBottom="0dp"
+                android:text="@string/bonus_question" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/bonus_answer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/bottom_margin"
+                android:layout_marginLeft="28dp"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:maxLines="1" />
+
+            <ImageView
+                android:id="@+id/bonus_indictaor"
+                style="@style/image_bullet" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bonus_submit_button"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="bonusScore"
+            android:text="@string/bonus_submit_button" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/back_to_quiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:text="@string/main_quiz"
+        android:textAllCaps="true"
+        android:textColor="@color/button_colour" />
+
+
+</LinearLayout>

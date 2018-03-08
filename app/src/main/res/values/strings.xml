@@ -32,7 +32,7 @@
     <string name="q7_option2">Lindsay Perkins</string>
     <string name="q7_option3">Perkins Quinn</string>
     <string name="q7_option4">Quinn Perkins</string>
-    <string name="bonus">bonus question</string>
+    <string name="bonus">bonus question > </string>
     <string name="bonus_question">Whose mother is discovered to be alive during season 3?</string>
     <string name="bonus_submit_button">submit</string>
     <string name="submit_main">it\'s handled \n submit</string>
@@ -43,5 +43,7 @@
     <string name="full_score">Qualified to work at OPA 👏🏾</string>
     <string name="final_score"> out of 7</string>
     <string name="error_message">Error! Answer all questions</string>
+    <string name="start">start ></string>
+    <string name="main_quiz">&lt; back to quiz</string>
 
 </resources>
